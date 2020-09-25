@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <input type="number" v-model.number="totalStars" placeholder="nb">
     <div class="moon"></div>
     <div
       class="star"
