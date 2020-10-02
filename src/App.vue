@@ -6,7 +6,7 @@
       class="star"
       v-for="star in totalStars"
       :key="star"
-      :style="`top: ${getRandomY()}px; left: ${getRandomX()}px;`"
+      :style="`top: ${getRandomY()}px; left: ${getRandomX()}px; opacity: 1; animation: test ${star*0.1}s ease-in-out`"
     ></div>
   </div>
 </template>
@@ -53,6 +53,7 @@ body {
   border-radius: 100%;
   height: 4px;
   width: 4px;
+  opacity: 0;
 }
 
 .moon {
@@ -67,5 +68,10 @@ body {
   right: 10%;
   top: 15%;
   border-radius: 100px;
+}
+
+@keyframes test {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 </style>
