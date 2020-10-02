@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <input type="number" v-model.number="totalStars" placeholder="nb">
+    <input type="range" min="10" max="350" v-model.number="totalStars" placeholder="nb" />
     <div class="moon"></div>
-    <div
-      class="star"
-      v-for="star in totalStars"
-      :key="star"
-      :style="`top: ${getRandomY()}px; left: ${getRandomX()}px; opacity: 1; animation: test ${star*0.1}s ease-in-out`"
-    ></div>
+    <transition-group name="field" tag="p">
+      <div
+        class="star"
+        v-for="star in totalStars"
+        :key="star"
+        :style="`top: ${getRandomY()}px; left: ${getRandomX()}px; transition: all ${star*0.1}s ease-in-out;`"
+      ></div>
+    </transition-group>
   </div>
 </template>
 
@@ -53,7 +55,6 @@ body {
   border-radius: 100%;
   height: 4px;
   width: 4px;
-  opacity: 0;
 }
 
 .moon {
@@ -69,9 +70,14 @@ body {
   top: 15%;
   border-radius: 100px;
 }
-
-@keyframes test {
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+// .field-enter-active,
+// .field-leave-active {
+//   transition: all 1s ease-in-out;
+// }
+.field-enter {
+  opacity: 0;
+}
+.field-leave-to {
+  opacity: 1;
 }
 </style>
